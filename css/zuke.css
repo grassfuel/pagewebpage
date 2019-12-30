@@ -1,0 +1,161 @@
+:root{
+    --BmW:300px;
+    --BmH:300px;
+}
+body{
+    background-color:#7030a0;
+}
+#koko{
+    background-color:#ddd;
+}
+
+
+
+#frontline{
+    position:fixed;
+    margin:0px;
+    left:0px;
+    top:60px;
+    width:2000px;
+    height:2px;
+    background-color:#9f52ae;
+}
+
+#button1{
+    position:fixed;
+    margin:0px;
+    right:470px;
+    bottom:75px;
+    width:var(--BmW);
+    height:var(--BmH);
+    border:3px solid #000;
+    border-radius: 50%;
+    background-color: #000;
+
+}
+#button1:hover{
+    animation:switchset ease-in 0.3s forwards;
+}
+#button1:active{
+    animation:switchON ease-in 0.1s forwards;
+}
+#buttondat{
+    position:absolute;
+    margin:0px;
+    left:44%;
+    top:4%;
+    width:12%;
+    height:12%;
+    border:3px solid #fff;
+    border-radius:50%;
+    background-color: #fff;
+}
+#buttonbar{
+    position:absolute;
+    margin:0px;
+    left:35%;
+    top:-31%;
+    width:30%;
+    height:31%;
+    border:3px solid #000;
+    background-color: #000;
+}
+
+#light{
+    position:fixed;
+    margin:0px;
+    left:900px;
+    top:230px;
+    width:70px;
+    height:70px;
+    border:3px solid #ffcc00;
+    border-radius: 50%;
+    background-color:#ffcc00;
+}
+#Heline{
+    position:absolute;
+    margin:0px;
+    left:50%;
+    top:100%;
+    width:2px;
+    height:400px;
+    background-color:#fff;
+}
+#Veline{
+    position:absolute;
+    margin:0px;
+    left:50%;
+    top:670%;
+    width:166px;
+    height:2px;
+    background-color:#fff;
+}
+
+#sidehandle{
+    position:absolute;
+    margin:0px;
+    right:0px;
+    top:0px;
+    width:250px;
+    height:135px;
+    background-color:#4f1eb2;
+}
+#sidebar{
+    position:fixed;
+    margin:0px;
+    right:0px;
+    top:0px;
+    width:135px;
+    height:1080px;
+    background-color:#9f52ae;
+}
+
+#conveyer{
+    position:fixed;
+    margin:0px;
+    left:235px;
+    top:0px;
+    width:480px;
+    height:1080px;
+    background-color:#c198e0;
+}
+#PCbutton{
+    position:absolute;
+    margin:0px;
+    left:63px;
+    top:85px;
+    width:350px;
+    height:290px;
+    border:3px solid #adadad;
+    border-radius:40px;
+    background-color:#bfbfbf;
+}
+#Pbutton{
+    position:absolute;
+    margin:0px;
+    left:0px;
+    top:450px;
+    width:350px;
+    height:290px;
+    border:3px solid #adadad;
+    border-radius:40px;
+    background-color:#bfbfbf;
+}
+
+
+@keyframes switchset{
+    0%{
+
+    }
+    100%{
+        transform:rotate(20deg);
+    }
+}
+@keyframes switchON{
+    0%{
+        transform:rotate(20deg);
+    }
+    100%{
+        transform:rotate(90deg);
+    }
+}
