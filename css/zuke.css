@@ -82,9 +82,9 @@ body{
     top:6%;
     width:7vmin;
     height:7vmin;
-    border:3px solid #ffcc00;
+    border:3px solid #224;
     border-radius: 50%;
-    background-color:#ffcc00;
+    background-color:#224;
 }
 #light:hover{
     animation:lightON ease-in 0.1s forwards;
@@ -184,8 +184,8 @@ body{
 
     }
     100%{
-        background-color:#224;
-        border:3px solid #224;
+        background-color:#ffcc00;
+        border:3px solid #ffcc00;
     }
 }
 
