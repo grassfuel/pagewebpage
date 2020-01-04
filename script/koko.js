@@ -1,11 +1,17 @@
 windowsize = document.getElementById("windowsize");
 sidehandle = document.getElementById("sidehandle");
-conveyer = document.getElementById("conveyer");
 sidehandle.style.top = "0px";
-handlestyle = sidehandle.offsetHeight / (windowsize.clientHeight - sidehandle.offsetHeight);
+conveyer = document.getElementById("conveyer");
+button = document.getElementById("button1");
+fuck = 30 / (button.offsetWidth / 2);
+tinko = button.offsetHeight / 1.5;
+dig = 0;
 sidehandle.ondragstart = function(){
     return false;
-};
+}
+button.ondragstart = function(){
+    return false;
+}
 sidehandle.onmousedown = function(e){
     fg = event.clientY - parseInt(sidehandle.style.top,10);
     function getXY(e){
@@ -14,7 +20,7 @@ sidehandle.onmousedown = function(e){
             handlestyle = sidehandle.offsetHeight / (windowsize.clientHeight - sidehandle.offsetHeight);
             sidehandle.style.top = y-fg + "px";
             conveyer.style.top = windowsize.clientHeight - parseInt(sidehandle.style.top,10) - parseInt(sidehandle.style.top,10) * handlestyle + "px";
-//            conveyer.style.top = windowsize.clientHeight - y + "px";
+//          conveyer.style.top = windowsize.clientHeight - y + "px";
         }
         else{
             document.removeEventListener("mousemove",getXY);
@@ -32,9 +38,29 @@ sidehandle.onmousedown = function(e){
     }
 }
 
-function konnitiha(){
-    console.log("よみこめました");
-    console.log(windowsize.clientHeight);
+button.onmousedown = function(e){
+    var buttonstartX = e.clientX;
+    var buttonstartY = e.clientY;
+    console.log(button.style.transform);
+    function switchON(e){
+        buttoncatchX = e.clientX - buttonstartX;
+        buttoncatchY = e.clientY - buttonstartY;
+        buttonstartX = e.clientX;
+        if(dig < 30){
+            dig += fuck*buttoncatchX;
+            button.style.transform = "rotate(" + dig + "deg)";
+        }else{
+            if(buttoncatchY > tinko){
+                button.style.transform = "rotate(90deg)";
+                document.removeEventListener("mousemove",switchON);
+            }
+        }
+        
+    }
+    document.addEventListener("mousemove",switchON);
+    button.onmouseup = function(){
+        document.removeEventListener("mousemove",switchON);
+    }
 }
 
 /*
@@ -47,6 +73,3 @@ function getXY(e){
     }
 }
 */
-
-
-konnitiha();
