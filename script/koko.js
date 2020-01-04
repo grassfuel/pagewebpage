@@ -1,17 +1,41 @@
 windowsize = document.getElementById("windowsize");
 sidehandle = document.getElementById("sidehandle");
 sidehandle.style.top = "0px";
+sidehandle.style.right = "-200%";
+conveyer.style.top = "100%";
 conveyer = document.getElementById("conveyer");
 button = document.getElementById("button1");
+light = document.getElementById("light");
 fuck = 30 / (button.offsetWidth / 2);
 tinko = button.offsetHeight / 1.5;
 dig = 0;
+
+switchafter = function(){
+    timecount+=1;
+    if(timecount > 50){
+        light.style.backgroundColor = "#ffcc00";
+        light.style.borderColor = "#ffcc00";
+    }
+    if(parseInt(sidehandle.style.right) < 0 && timecount > 100){
+        sidehandle.style.right = parseInt(sidehandle.style.right) + 2 +"%";
+        conveyer.style.top = parseInt(conveyer.style.top) + -1 + "%"
+        console.log(sidehandle.style.right);
+        console.log(conveyer.style.top);
+    }
+    window.requestAnimationFrame(switchafter);
+}
+
+
+
+
 sidehandle.ondragstart = function(){
     return false;
 }
 button.ondragstart = function(){
     return false;
 }
+
+
 sidehandle.onmousedown = function(e){
     fg = event.clientY - parseInt(sidehandle.style.top,10);
     function getXY(e){
@@ -53,6 +77,9 @@ button.onmousedown = function(e){
             if(buttoncatchY > tinko){
                 button.style.transform = "rotate(90deg)";
                 document.removeEventListener("mousemove",switchON);
+                timecount = 0;
+                switchafter();
+                console.log(parseInt(sidehandle.style.right));
             }
         }
         
@@ -62,6 +89,8 @@ button.onmousedown = function(e){
         document.removeEventListener("mousemove",switchON);
     }
 }
+
+
 
 /*
 function getXY(e){
