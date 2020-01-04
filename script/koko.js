@@ -1,49 +1,50 @@
-windowsize = document.getElementById("windowsize");
-sidehandle = document.getElementById("sidehandle");
+var light = document.getElementById("light");
+var conveyer = document.getElementById("conveyer");
+var windowsize = document.getElementById("windowsize");
+var sidehandle = document.getElementById("sidehandle");
+var platform_button = document.getElementById("PCbutton");
+var selector_switch = document.getElementById("selector_switch");
+var dig = 0;
+var tinko = selector_switch.offsetHeight / 1.5;
+var fuck = 30 / (selector_switch.offsetWidth / 2);
+conveyer.style.top = "100%";
 sidehandle.style.top = "0px";
 sidehandle.style.right = "-200%";
-conveyer.style.top = "100%";
-conveyer = document.getElementById("conveyer");
-button = document.getElementById("button1");
-light = document.getElementById("light");
-fuck = 30 / (button.offsetWidth / 2);
-tinko = button.offsetHeight / 1.5;
-dig = 0;
-
-switchafter = function(){
-    timecount+=1;
-    if(timecount > 50){
-        light.style.backgroundColor = "#ffcc00";
-        light.style.borderColor = "#ffcc00";
-    }
-    if(parseInt(sidehandle.style.right) < 0 && timecount > 100){
-        sidehandle.style.right = parseInt(sidehandle.style.right) + 2 +"%";
-        conveyer.style.top = parseInt(conveyer.style.top) + -1 + "%"
-        console.log(sidehandle.style.right);
-        console.log(conveyer.style.top);
-    }
-    window.requestAnimationFrame(switchafter);
-}
-
+platform_button.style.top = "100%";
 
 
 
 sidehandle.ondragstart = function(){
     return false;
 }
-button.ondragstart = function(){
+selector_switch.ondragstart = function(){
     return false;
 }
 
 
+switchafter = function(){
+    timecount+=1;
+    if(timecount > 50){
+        light.style.borderColor = "#ffcc00";
+        light.style.backgroundColor = "#ffcc00";
+    }
+    if(parseInt(sidehandle.style.right) < 0 && timecount > 100){
+        sidehandle.style.right = parseInt(sidehandle.style.right) + 10 +"%";
+        conveyer.style.top = parseInt(conveyer.style.top) + -5 + "%"
+    }
+    if(timecount < 200){
+        window.requestAnimationFrame(switchafter);
+    }
+}
+
 sidehandle.onmousedown = function(e){
-    fg = event.clientY - parseInt(sidehandle.style.top,10);
+    fg = e.clientY - parseInt(sidehandle.style.top,10);
     function getXY(e){
-        var y = event.clientY;
+        var y = e.clientY;
         if(parseInt(sidehandle.style.top,10) >= 0 && parseInt(sidehandle.style.top,10) + sidehandle.offsetHeight <= windowsize.clientHeight){
-            handlestyle = sidehandle.offsetHeight / (windowsize.clientHeight - sidehandle.offsetHeight);
+            handlestyle = sidehandle.offsetHeight / 2.5 / (windowsize.clientHeight - sidehandle.offsetHeight);
             sidehandle.style.top = y-fg + "px";
-            conveyer.style.top = windowsize.clientHeight - parseInt(sidehandle.style.top,10) - parseInt(sidehandle.style.top,10) * handlestyle + "px";
+            platform_button.style.top = windowsize.clientHeight - parseInt(sidehandle.style.top,10) - parseInt(sidehandle.style.top,10) * handlestyle + "px";
 //          conveyer.style.top = windowsize.clientHeight - y + "px";
         }
         else{
@@ -62,20 +63,20 @@ sidehandle.onmousedown = function(e){
     }
 }
 
-button.onmousedown = function(e){
-    var buttonstartX = e.clientX;
-    var buttonstartY = e.clientY;
-    console.log(button.style.transform);
+selector_switch.onmousedown = function(e){
+    var selector_switchstartX = e.clientX;
+    var selector_switchstartY = e.clientY;
+    console.log(selector_switch.style.transform);
     function switchON(e){
-        buttoncatchX = e.clientX - buttonstartX;
-        buttoncatchY = e.clientY - buttonstartY;
-        buttonstartX = e.clientX;
+        selector_switchcatchX = e.clientX - selector_switchstartX;
+        selector_switchcatchY = e.clientY - selector_switchstartY;
+        selector_switchstartX = e.clientX;
         if(dig < 30){
-            dig += fuck*buttoncatchX;
-            button.style.transform = "rotate(" + dig + "deg)";
+            dig += fuck*selector_switchcatchX;
+            selector_switch.style.transform = "rotate(" + dig + "deg)";
         }else{
-            if(buttoncatchY > tinko){
-                button.style.transform = "rotate(90deg)";
+            if(selector_switchcatchY > tinko){
+                selector_switch.style.transform = "rotate(90deg)";
                 document.removeEventListener("mousemove",switchON);
                 timecount = 0;
                 switchafter();
@@ -85,7 +86,7 @@ button.onmousedown = function(e){
         
     }
     document.addEventListener("mousemove",switchON);
-    button.onmouseup = function(){
+    selector_switch.onmouseup = function(){
         document.removeEventListener("mousemove",switchON);
     }
 }
