@@ -11,9 +11,6 @@ body{
     height:100%;
     background-color:#7030a0;
 }
-#koko{
-    background-color:#ddd;
-}
 
 
 
@@ -136,13 +133,21 @@ body{
     background-color:#c198e0;
 /*    animation:beltline linear 1s infinite alternate;*/
 }
-#PCbutton{
+#buttonbox{
     position:absolute;
     margin:0%;
     left:19%;
     top:100%;
     width:19%;
     height:30%;
+}
+#PCbutton{
+    position:absolute;
+    margin:0%;
+    left:0%;
+    top:0%;
+    width:100%;
+    height:100%;
     border:3px solid #ece0f6;
     border-radius:40px;
     background-color:#ece0f6;
@@ -217,22 +222,16 @@ body{
     top:75%;
     font-size:4vmin;
 }
-@keyframes switchset{
-    0%{
 
-    }
-    100%{
-        transform:rotate(20deg);
-    }
+#PCbutton:active{
+    background:#fff;
+    color:#444;
 }
-@keyframes switchON{
-    0%{
-        transform:rotate(20deg);
-    }
-    100%{
-        transform:rotate(90deg);
-    }
+#Pbutton:active{
+    background:#fff;
+    color:#444;
 }
+
 
 @keyframes lightON{
     0%{

@@ -2,7 +2,7 @@ var light = document.getElementById("light");
 var conveyer = document.getElementById("conveyer");
 var windowsize = document.getElementById("windowsize");
 var sidehandle = document.getElementById("sidehandle");
-var platform_button = document.getElementById("PCbutton");
+var platform_button = document.getElementById("buttonbox");
 var selector_switch = document.getElementById("selector_switch");
 var dig = 0;
 var tinko = selector_switch.offsetHeight / 1.5;
@@ -12,6 +12,7 @@ sidehandle.style.top = "0px";
 sidehandle.style.right = "-200%";
 platform_button.style.top = "100%";
 
+var sound_toggle = new Audio('./sound/toggle.ogg');
 
 
 sidehandle.ondragstart = function(){
@@ -77,6 +78,7 @@ selector_switch.onmousedown = function(e){
         }else{
             if(selector_switchcatchY > tinko){
                 selector_switch.style.transform = "rotate(90deg)";
+                sound_toggle.play();
                 document.removeEventListener("mousemove",switchON);
                 timecount = 0;
                 switchafter();
@@ -90,8 +92,6 @@ selector_switch.onmousedown = function(e){
         document.removeEventListener("mousemove",switchON);
     }
 }
-
-
 
 /*
 function getXY(e){
